@@ -1,0 +1,46 @@
+
+@import "bootstrap";
+
+$mynewcolor:#cc7777;
+
+.header {
+    padding: 10px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 5px 10px;
+        svg {
+            width: 26px;
+            margin-right: 5px;
+        }
+    }
+}
+
+// .btn-outline-primary:hover, 
+// .btn-outline-primary:focus {
+//         background-color: #0057fc !important;
+//         color: #0057fc !important;
+// }
+
+// .btn-primary:hover {
+//     color: #fff;
+//     background-color: #0069d9;
+//     border-color: #0062cc;
+//   }
+
+
+// .btn-primary.custom-btn {
+//     color: $mynewcolor;
+// 	background-color: $mynewcolor;
+// 	border-color: $mynewcolor;
+// }
+
+.btn-primary-test {
+    @include button-variant($mynewcolor, darken($mynewcolor, 7.5%), darken($mynewcolor, 10%), lighten($mynewcolor,5%), lighten($mynewcolor, 10%), darken($mynewcolor,30%));
+}
+
+.btn-outline-primary-test {
+    @include button-outline-variant($mynewcolor, darken($mynewcolor,4%), lighten($mynewcolor,5%), $mynewcolor);
+}

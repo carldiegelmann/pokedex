@@ -1,0 +1,38 @@
+.p {
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 15px;
+    }
+}
+
+.list {
+  padding: 10px;
+}
+
+.row { 
+  border-bottom: 1px solid #ebeced;
+  text-align: left;
+  margin: 5px 0;
+  display: flex;
+  vertical-align: middle;
+}
+  
+// .image {
+//   margin-right: 20px;
+//   margin-left: 20px;
+//   background-color: aqua;
+// }
+
+.content {
+  padding: 25px;
+  vertical-align: middle;
+}
+
+.ReactVirtualized__Grid {
+  outline: none;
+}
+
+// .card {
+//   margin-bottom: 10px;
+// }
