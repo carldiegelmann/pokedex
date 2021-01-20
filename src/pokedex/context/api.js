@@ -7,18 +7,12 @@ const headers = {
     }
 };
 
-// return fetch('https://randomuser.me/api/')
-//       .then(results => results.json())
-//       .then(data => {
-//         const {name} = data.results[0];
-//         setFirstName(name.first);
-//         setLastName(name.last);
-//       });
-
 export const getPokemonsWithFetch = async () => {
     const response = await fetch(BASE_API + 'v2/pokemon/?limit=1118', headers);
     const jsonData = await response.json();
-    return (jsonData);
+    const data = jsonData.results;
+    const dataWithId = data.map((currElement, index) => ({...currElement, id: index + 1}));
+    return (dataWithId);
 };
 
 export const getPokemonDataWithUrl = async (url) => {
@@ -32,3 +26,13 @@ export const getPokemonDescriptionWithId = async (id) => {
     const jsonData = await response.json();
     return (jsonData);
 };
+
+export const fetchImageAndTypes = async (url) => {
+
+    try {
+        const response = await getPokemonDataWithUrl(url);
+        return {imageUrl: response.sprites.front_default, types: response.types.map((type) => type.type.name)};
+    } catch (err) {
+        console.error('err', err);
+    }
+}

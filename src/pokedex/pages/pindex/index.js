@@ -1,7 +1,8 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 //import PokemonList from './PokemonList';
-import PokedexList from './PokedexList';
+// import PokedexList from './PokedexList';
+import PokemonSearchableList from "./PokemonSearchableList";
 
 const PokemonIndex = () => {
 
@@ -12,7 +13,7 @@ const PokemonIndex = () => {
                     <h1>Pokemon Index</h1>
                     <p>Search and add your favorite Pokemons to your own Pokemon list.</p>
                 </div>
-                <PokedexList />
+                <PokemonSearchableList />
             </div>
         </Layout>
     );

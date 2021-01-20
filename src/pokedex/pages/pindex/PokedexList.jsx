@@ -64,7 +64,7 @@ const PokedexList = () => {
                 console.log("SEARCH DIFFER!!" + completeListFiltered.length + " - " + listFiltred.length)
                 const foo2 = await Promise.all(completeListFiltered.map((obj) => trackPromise(fetchImage(obj.url)))).then((responses) => {
                     console.log(responses.length);
-                    const array = completeListFiltered.map((currElement, index) => ({...currElement, image: responses[index]}));
+                    const array = completeListFiltered.map((currElement, index) => ({...currElement, image: responses[index].imageUrl}));
                     return array;
                 });
                 setData(foo2);
@@ -99,7 +99,7 @@ const PokedexList = () => {
                 const foo = result.results.slice(0, initialSize);
                 const foo2 = await Promise.all(foo.map((obj) => fetchImage(obj.url))).then((responses) => {
                     console.log(responses.length);
-                    const array = foo.map((currElement, index) => ({...currElement, image: responses[index], id: index + 1}));
+                    const array = foo.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, id: index + 1}));
                     return array;
                 });
                 setState({
@@ -151,7 +151,7 @@ const PokedexList = () => {
         const foo = state.items.slice(state.marker, state.marker + initialSize)
         const foo2 = await Promise.all(foo.map((obj) => fetchImage(obj.url))).then((responses) => {
             console.log(responses.length);
-            const array = foo.map((currElement, index) => ({...currElement, image: responses[index]}));
+            const array = foo.map((currElement, index) => ({...currElement, image: responses[index].imageUrl}));
             return array;
         });
 

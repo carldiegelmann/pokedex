@@ -3,27 +3,27 @@ import {Link} from 'react-router-dom';
 import {CartContext} from '../../context/CartContext';
 import {capitalize} from '../../helper';
 
-const PokemonListItem = ({pokemon, index}) => {
+const PokemonListItem = ({pokemon}) => {
 
     const {addPokemon, cartItems, removePokemon} = useContext(CartContext);
 
     const isInCart = pokemon => {
         return !!cartItems.find(item => item.name === pokemon.name);
     }
-
-    return (
+    console.log(pokemon);
+    return pokemon ? (
         <div className={"card card-body mt-2"}>
             <div class="card-block">
                 <div class="row">
                     <div class="col-md-4">
                         <h3 class="card-title">
-                            {<img style={{maxHeight: "200px"}} className="img-fluid" src={pokemon.image.imageUrl} alt="" />} # {index + 1} {capitalize(pokemon.name)}
+                            {<img style={{maxHeight: "200px"}} className="img-fluid" src={pokemon.image} alt="" />} # {pokemon.id} {capitalize(pokemon.name)}
                             {isInCart(pokemon) && <span class="badge badge-secondary">I own it!</span>}
                         </h3>
                     </div>
                     <div class="col-md-4">
                         <ul>
-                            {pokemon.image.types.map(type =>
+                            {pokemon.types.map(type =>
                                 <li>{type}</li>
                             )}
                         </ul>
@@ -53,7 +53,7 @@ const PokemonListItem = ({pokemon, index}) => {
                 </div>
             </div>
         </div>
-    );
+    ) : null;
 }
 
 export default PokemonListItem;

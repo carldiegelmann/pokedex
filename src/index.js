@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HelmetProvider} from 'react-helmet-async';
+import PokemonContextProvider from './pokedex/context/PokemonContext'
 import CartContextProvider from './pokedex/context/CartContext'
 import Routes from './pokedex/Router';
 import './index.css';
@@ -10,9 +11,11 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
 
   <HelmetProvider>
-    <CartContextProvider>
-      <Routes />
-    </CartContextProvider>
+    <PokemonContextProvider>
+      <CartContextProvider>
+        <Routes />
+      </CartContextProvider>
+    </PokemonContextProvider>
   </HelmetProvider>,
 
   document.getElementById('root')

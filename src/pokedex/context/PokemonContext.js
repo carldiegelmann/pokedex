@@ -1,61 +1,64 @@
-import React, {createContext, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {createContext, useReducer, useState} from 'react';
 import {trackPromise} from "react-promise-tracker";
-//import {dummyPokemon} from '../services/dummy';
-import {fetchPokemons} from "./../redux/actions";
-import {useReducerWithThunk} from './thunk';
-import pokedexReducer from './../redux/reducers/pokedexReducer'
-import {getPokemonsWithFetch} from './api';
+// import {fetchPokemons} from "./../redux/actions";
+import {PokemonReducer} from './PokemonReducer'
+import {getPokemonsWithFetch, fetchImageAndTypes} from './api';
 
 export const PokemonContext = createContext()
 
+//const initialListSize = 2;
+const initialListSize = 18;
+const storage = localStorage.getItem('pokemonlist') ? JSON.parse(localStorage.getItem('pokemonlist')) : [];
+const initialState = {pokemonItems: storage, searchList: []};
 
 const PokemonContextProvider = ({children}) => {
-    const [state, setState] = useState({status: 'LOADING', items: []});
 
-    // // Dispatch
-    // const dispatch = useDispatch();
+    const [state, dispatch] = useReducer(PokemonReducer, initialState)
+    const [counterIndex, setCounterIndex] = useState(initialListSize);
 
-    // useEffect(async () => {
-    //     const result = dispatch(fetchPokemons());
-    //     setData(result.data);
-    // });
-    // //const [pokemons] = useState(dummyPokemon);
-
-    // Async action creator
-    // const fetchData = () => async (dispatch) => {
-    //     //dispatch({type: "FETCH_POKEMONS_BEGIN"});
-    //     dispatch(fetchPokemons());
-    // }
-
-    const fetch = async () => {
-        try {
-            const result = await getPokemonsWithFetch();
-            if (result.results) {
-                setState({
-                    status: 'LOADED',
-                    items: result.results,
-                });
-            } else {
-                setState({status: 'ERROR'});
+    const loadInitialPokemonList = async () => {
+        const allItems = await trackPromise(getPokemonsWithFetch());
+        if (allItems) {
+            const subset = allItems.slice(0, counterIndex);
+            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchImageAndTypes(obj.url)))).then((responses) => {
+                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types}));
+            }); {
+                dispatch({type: 'LOAD_INIT', allItems, itemsWithImages});
             }
-        } catch (err) {
-            console.error('err', err);
+            // ERROR DISPATCH
+            //dispatch({type: 'LOAD_ITEMS', itemsWithImages})
         }
     }
 
-    // const initialState = {items: []};
-    // const [state, dispatch] = useReducerWithThunk(pokedexReducer, initialState);
+    const fetchMorePokemon = async () => {
+        const items = await getPokemonsWithFetch();
+        if (items) {
+            const nextIndex = initialListSize + counterIndex;
+            const subset = items.slice(counterIndex, nextIndex);
 
-    useEffect(async () => {
-        console.log('load pokemons')
-        setState({status: 'LOADING '});
-        trackPromise(fetch());
-    }, [])
+            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchImageAndTypes(obj.url)))).then((responses) => {
+                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types}));
+            });
+            setCounterIndex(nextIndex)
+            dispatch({type: 'LOAD_MORE', itemsWithImages})
+        }
+        // ERROR DISPATCH
+        //dispatch({type: 'LOAD_ITEMS', itemsWithImages})
+    }
 
-    console.log(state);
+    const searchPokemonList = async (itemsWithImages) => {
+        dispatch({type: 'SEARCH_POKEMONS', itemsWithImages})
+    }
+
+    const contextValues = {
+        loadInitialPokemonList,
+        fetchMorePokemon,
+        searchPokemonList,
+        ...state
+    }
+
     return (
-        <PokemonContext.Provider value={state.items} >
+        <PokemonContext.Provider value={contextValues} >
             { children}
         </PokemonContext.Provider>
     );
