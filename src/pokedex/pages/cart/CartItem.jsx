@@ -15,7 +15,7 @@ const CartItem = ({product}) => {
                 <img
                     alt={product.name}
                     // style={{margin: "0 auto", maxHeight: "50px"}}
-                    src={product.image.imageUrl} className="img-fluid d-block" />
+                    src={product.image} className="img-fluid d-block" />
             </div>
             <div className="col-sm-4 p-2 vertical-center">
                 <h5 className="mb-1">#{product.id} - {capitalize(product.name)}</h5>
