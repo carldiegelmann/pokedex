@@ -8,7 +8,7 @@ import {getPokemonsWithFetch, fetchImageAndTypes} from './../../context/api';
 import styles from './PokemonSearchableList.module.scss';
 
 const PokemonSearchableList = () => {
-    const {pokemonItems, searchList, loadInitialPokemonList, fetchMorePokemon, searchPokemonList} = useContext(PokemonContext);
+    const {allItems, pokemonItems, searchList, loadInitialPokemonList, fetchMorePokemon, searchPokemonList} = useContext(PokemonContext);
 
     const [searchString, setSearchString] = useState("");
     const [bouncedSearchString] = useDebounce(searchString, 1000);
@@ -41,7 +41,7 @@ const PokemonSearchableList = () => {
             <div className="row">
                 <div className="col-sm-8">
                     <div className="py-3">
-                        {(pokeItems != null) ? pokeItems.length : 0} Pokemons
+                        {pokeItems ? pokeItems.length : 0} Pokemons ({allItems ? allItems.length : 0})
                     </div>
                 </div>
                 <div className="col-sm-4">
