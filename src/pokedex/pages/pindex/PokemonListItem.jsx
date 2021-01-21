@@ -10,10 +10,10 @@ const PokemonListItem = ({pokemon}) => {
     const isInCart = pokemon => {
         return !!cartItems.find(item => item.name === pokemon.name);
     }
-    console.log(pokemon);
+
     return pokemon ? (
         <div className="card">
-            {isInCart(pokemon) && <div class="card-header">
+            {isInCart(pokemon) && <div className="card-header">
                 <div className="text-center">I own it!</div>
             </div>}
             <div className="card-body d-flex flex-column">

@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import PokemonContextProvider from './pokedex/context/PokemonContext'
 import CartContextProvider from './pokedex/context/CartContext'
 import Routes from './pokedex/Router';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import {store} from "./pokedex/redux/store";
+import {Provider} from "react-redux"
 
 ReactDOM.render(
 
   <HelmetProvider>
-    <PokemonContextProvider>
+    <Provider store={store}>
       <CartContextProvider>
         <Routes />
       </CartContextProvider>
-    </PokemonContextProvider>
+    </Provider>
   </HelmetProvider>,
 
   document.getElementById('root')

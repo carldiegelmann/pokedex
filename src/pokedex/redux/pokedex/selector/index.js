@@ -1,0 +1,1 @@
+export {pokemonSelector} from "./pokemon.selector";

@@ -14,7 +14,6 @@
     "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.1",
     "react-helmet-async": "^1.0.7",
-    "react-infinite-scroll-component": "^5.1.0",
     "react-promise-tracker": "^2.1.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
@@ -25,6 +24,7 @@
     "rough-charts": "^0.5.0",
     "styled-components": "^5.2.1",
     "use-debounce": "^5.2.0",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -1,0 +1,1 @@
+export {pokemonReducer} from "./pokemon.reducer";

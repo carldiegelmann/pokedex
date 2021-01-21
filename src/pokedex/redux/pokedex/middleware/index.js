@@ -1,0 +1,1 @@
+export {pokemonMiddleware} from "./pokedex.middleware";
