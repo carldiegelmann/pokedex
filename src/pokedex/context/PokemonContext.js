@@ -9,7 +9,7 @@ export const PokemonContext = createContext()
 //const initialListSize = 2;
 const initialListSize = 18;
 const storage = localStorage.getItem('pokemonlist') ? JSON.parse(localStorage.getItem('pokemonlist')) : [];
-const initialState = {pokemonItems: storage, searchList: []};
+const initialState = {pokemonItems: storage, searchList: [], allItems: []};
 
 const PokemonContextProvider = ({children}) => {
 
@@ -31,7 +31,7 @@ const PokemonContextProvider = ({children}) => {
     }
 
     const fetchMorePokemon = async () => {
-        const items = await getPokemonsWithFetch();
+        const items = await trackPromise(getPokemonsWithFetch());
         if (items) {
             const nextIndex = initialListSize + counterIndex;
             const subset = items.slice(counterIndex, nextIndex);

@@ -48,7 +48,7 @@ const PokemonDetails = (props) => {
         <Layout title="Detail" description="This is the Detail page" >
             <div className="card card-body">
                 <h3>Number: {state.data.id} Name: {state.data.name}</h3>
-                {state.data.sprites ? (<img className="img-fluid w-100" src={state.data.sprites.front_default} />) : null}
+                {state.data.sprites ? (<img className="rounded mx-auto d-block" src={state.data.sprites.front_default} />) : null}
                 <p>{giveDescription(state.data2.flavor_text_entries)}</p>
                 <div className="text-right">
                     <button

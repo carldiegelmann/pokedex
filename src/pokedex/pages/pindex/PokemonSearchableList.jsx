@@ -41,7 +41,7 @@ const PokemonSearchableList = () => {
             <div className="row">
                 <div className="col-sm-8">
                     <div className="py-3">
-                        {pokeItems ? pokeItems.length : 0} Pokemons ({allItems ? allItems.length : 0})
+                        {allItems ? allItems.length : 0} Pokemons
                     </div>
                 </div>
                 <div className="col-sm-4">

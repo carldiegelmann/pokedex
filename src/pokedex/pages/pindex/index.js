@@ -1,7 +1,5 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-//import PokemonList from './PokemonList';
-// import PokedexList from './PokedexList';
 import PokemonSearchableList from "./PokemonSearchableList";
 
 const PokemonIndex = () => {
