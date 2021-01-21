@@ -65,7 +65,7 @@ const PokemonSearchableList = () => {
                     </p>
                 }
             >
-                <div className={styles.p__grid}>
+                <div className={styles.pokemon__grid}>
                     {
                         (pokeItems != null && pokeItems.length > 0) ? pokeItems.map(pokemon => (
                             <PokemonListItem pokemon={pokemon} />
