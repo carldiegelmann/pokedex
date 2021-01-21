@@ -18,8 +18,8 @@ const Routes = () => {
         {/* <Route path="/about" component={About} /> */}
         <Route exact path="/" component={PokemonIndex} />
         <Route path="/cart" component={Cart} />
-        {/* <Route path='/details/:id' component={PokemonDetails} /> */}
-        <Route path='/details/' component={PokemonDetails} />
+        <Route path='/details/:id' component={PokemonDetails} />
+        {/* <Route path='/details/' component={PokemonDetails} /> */}
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

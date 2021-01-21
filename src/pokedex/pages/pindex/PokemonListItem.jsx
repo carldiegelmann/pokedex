@@ -29,8 +29,8 @@ const PokemonListItem = ({pokemon}) => {
                 </div>
                 <div className="text-right align-self-end">
                     <Link to={{
-                        pathname: "/details/",
-                        data: pokemon.url // your data array of objects
+                        pathname: "/details/" + pokemon.id,
+                        pokemon
                     }} className="btn btn-link btn-sm mr-2" >Details</Link>
 
                     {

@@ -10,17 +10,17 @@ const CartItem = ({product}) => {
     const {removePokemon} = useContext(CartContext);
 
     return (
-        <div className="row no-gutters py-2">
-            <div className="col-sm-2 p-2 vertical-center">
+        <div className="row no-gutters py-2 d-flex align-items-center">
+            <div className="col-sm-2 p-2">
                 <img
                     alt={product.name}
                     // style={{margin: "0 auto", maxHeight: "50px"}}
                     src={product.image} className="img-fluid d-block" />
             </div>
-            <div className="col-sm-4 p-2 vertical-center">
+            <div className="col-sm-4 p-2">
                 <h5 className="mb-1">#{product.id} - {capitalize(product.name)}</h5>
             </div>
-            <div className="col-sm-4 p-2 text-right vertical-center">
+            <div className="col-sm-4 p-2 text-right">
                 {
                     product &&
                     <button

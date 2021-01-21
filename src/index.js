@@ -6,7 +6,6 @@ import CartContextProvider from './pokedex/context/CartContext'
 import Routes from './pokedex/Router';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-//import store from './pokedex/redux/store';
 
 ReactDOM.render(
 

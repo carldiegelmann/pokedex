@@ -1,13 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import React, {useEffect, useState, useContext} from 'react';
+import {withRouter, useParams} from 'react-router-dom';
 import {trackPromise} from 'react-promise-tracker';
+import {CartContext} from '../../context/CartContext';
 import {getPokemonDataWithUrl, getPokemonDescriptionWithId} from '../../context/api';
+import {capitalize} from '../../helper';
 import Layout from '../../components/Layout';
 
 const PokemonDetails = (props) => {
-    const data = props.location;
-    const [state, setState] = useState({status: 'LOADING', data: [], data2: []});
-    console.log(data);
+    const pokemon = props.location.pokemon;
+    const {id} = useParams();
+    const [state, setState] = useState({status: 'LOADING', data: []});
+    const {addPokemon, removePokemon, cartItems} = useContext(CartContext);
+
+    // const isInCart = pokemon => {
+    //     return !!cartItems.find(item => item.name === pokemon.name);
+    // }
+
+    console.log(pokemon);
+    //console.log(data);
     // const [state, setState] = useState({status: 'LOADING', data: []});
     // useEffect(async () => {
     //     const result = await getPokemonsWithFetch();
@@ -18,16 +28,15 @@ const PokemonDetails = (props) => {
     }
 
     useEffect(async () => {
-        if (!data.data) {
+        if (!pokemon) {
             props.history.push('/');
         }
 
         async function fetchMyAPI() {
             try {
-                const response = await getPokemonDataWithUrl(data.data);
-                const response2 = await getPokemonDescriptionWithId(response.id);
+                const response = await getPokemonDescriptionWithId(id);
                 console.log(response);
-                setState({status: 'LOADED', data: response, data2: response2})
+                setState({status: 'LOADED', data: response})
             } catch (err) {
                 console.error('err', err);
             }
@@ -46,37 +55,22 @@ const PokemonDetails = (props) => {
 
     return (
         <Layout title="Detail" description="This is the Detail page" >
-            <div className="card card-body">
-                <h3>Number: {state.data.id} Name: {state.data.name}</h3>
-                {state.data.sprites ? (<img className="rounded mx-auto d-block" src={state.data.sprites.front_default} />) : null}
-                <p>{giveDescription(state.data2.flavor_text_entries)}</p>
-                <div className="text-right">
-                    <button
-                        onClick={() => handleBackClick()}
-                        className="btn btn-outline-primary btn-sm">Back to list</button>
+            <div className="card">
+                <div class="card-body">
+                    <img class="card-img-top" src={pokemon.image} className="rounded mx-auto d-block" alt="no image" />
+                    <h5 class="card-title"># {pokemon.id} {capitalize(pokemon.name)}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h3></h3>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    {/* {state.data.sprites ? (<img className="rounded mx-auto d-block" src={state.data.sprites.front_default} />) : null} */}
+                    {/* <p>{giveDescription(state.data.flavor_text_entries)}</p> */}
+                    <div className="text-right">
+                        <button
+                            onClick={() => handleBackClick()}
+                            className="btn btn-outline-primary btn-sm">Back to list</button>
+                    </div>
                 </div>
             </div>
-            {/* <div className="card card-body">
-
-                <div class="view zoom overlay z-depth-2 rounded">
-                    <img className="img-fluid w-100"
-                        src={state.sprites.front_default} alt="Sample" />
-
-                    <div className="mask">
-                        <img className="img-fluid w-100"
-                            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" />
-                        <div className="mask rgba-black-slight"></div>
-                    </div>
-
-                </div>
-
-                <div className="pt-4">
-
-                    <h5>Fantasy T-shirt</h5>
-                    <h6>12.99 $</h6>
-                </div>
-            </div> */}
-
         </Layout>
     );
 }
