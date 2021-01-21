@@ -4,7 +4,7 @@ import {useDebounce} from 'use-debounce';
 import {trackPromise} from "react-promise-tracker";
 import PokemonListItem from './PokemonListItem';
 import {PokemonContext} from '../../context/PokemonContext';
-import {getPokemonsWithFetch, fetchImageAndTypes} from './../../context/api';
+import {getPokemonsWithFetch, fetchAdditionalData} from './../../context/api';
 import styles from './PokemonSearchableList.module.scss';
 
 const PokemonSearchableList = () => {
@@ -23,7 +23,7 @@ const PokemonSearchableList = () => {
             const searchTerm = bouncedSearchString.toString().toLowerCase();
             const items = await getPokemonsWithFetch();
             const allItemsFiltered = items.filter((item) => {return item.name.toLowerCase().includes(searchTerm)});
-            const itemsWithImages = await Promise.all(allItemsFiltered.map((obj) => trackPromise(fetchImageAndTypes(obj.url)))).then((responses) => {
+            const itemsWithImages = await Promise.all(allItemsFiltered.map((obj) => trackPromise(fetchAdditionalData(obj.url)))).then((responses) => {
                 return allItemsFiltered.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types}));
             });
             searchPokemonList(itemsWithImages);

@@ -2,7 +2,7 @@ import React, {createContext, useReducer, useState} from 'react';
 import {trackPromise} from "react-promise-tracker";
 // import {fetchPokemons} from "./../redux/actions";
 import {PokemonReducer} from './PokemonReducer'
-import {getPokemonsWithFetch, fetchImageAndTypes} from './api';
+import {getPokemonsWithFetch, fetchAdditionalData} from './api';
 
 export const PokemonContext = createContext()
 
@@ -20,8 +20,8 @@ const PokemonContextProvider = ({children}) => {
         const allItems = await trackPromise(getPokemonsWithFetch());
         if (allItems) {
             const subset = allItems.slice(0, counterIndex);
-            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchImageAndTypes(obj.url)))).then((responses) => {
-                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types}));
+            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchAdditionalData(obj.url)))).then((responses) => {
+                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types, stats: responses[index].stats, moves: responses[index].moves}));
             }); {
                 dispatch({type: 'LOAD_INIT', allItems, itemsWithImages});
             }
@@ -36,8 +36,8 @@ const PokemonContextProvider = ({children}) => {
             const nextIndex = initialListSize + counterIndex;
             const subset = items.slice(counterIndex, nextIndex);
 
-            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchImageAndTypes(obj.url)))).then((responses) => {
-                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types}));
+            const itemsWithImages = await Promise.all(subset.map((obj) => trackPromise(fetchAdditionalData(obj.url)))).then((responses) => {
+                return subset.map((currElement, index) => ({...currElement, image: responses[index].imageUrl, types: responses[index].types, stats: responses[index].stats, moves: responses[index].moves}));
             });
             setCounterIndex(nextIndex)
             dispatch({type: 'LOAD_MORE', itemsWithImages})

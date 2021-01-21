@@ -27,11 +27,11 @@ export const getPokemonDescriptionWithId = async (id) => {
     return (jsonData);
 };
 
-export const fetchImageAndTypes = async (url) => {
+export const fetchAdditionalData = async (url) => {
 
     try {
         const response = await getPokemonDataWithUrl(url);
-        return {imageUrl: response.sprites.front_default, types: response.types.map((type) => type.type.name)};
+        return {imageUrl: response.sprites.front_default, types: response.types.map((type) => type.type.name), stats: response.stats, moves: response.moves};
     } catch (err) {
         console.error('err', err);
     }
