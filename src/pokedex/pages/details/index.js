@@ -1,14 +1,14 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {withRouter, useParams} from 'react-router-dom';
 import ChartComponent from './ChartComponent';
-import {CartContext} from '../../context/CartContext';
+import {BagContext} from '../../context/BagContext';
 import {capitalize} from '../../helper';
 import Layout from '../../components/Layout';
 import styles from './index.module.scss';
 
 const PokemonDetails = (props) => {
     const pokemon = props.location.pokemon;
-    const {addPokemon, cartItems, removePokemon} = useContext(CartContext);
+    const {addPokemon, bagItems, removePokemon} = useContext(BagContext);
 
     useEffect(() => {
         if (!pokemon) props.history.push('/');
@@ -18,18 +18,18 @@ const PokemonDetails = (props) => {
         props.history.push('/');
     }
 
-    const isInCart = pokemon => {
+    const isInBag = pokemon => {
         if (!pokemon) {
             props.history.push('/');
         } else {
-            return !!cartItems.find(item => item.name === pokemon.name);
+            return !!bagItems.find(item => item.name === pokemon.name);
         }
     }
 
     return (pokemon ?
         <Layout title="Detail" description="This is the Detail page" >
             <div className="card">
-                {isInCart(pokemon) && <div className="card-header">
+                {isInBag(pokemon) && <div className="card-header">
                     <div className="text-center">I own it!</div>
                 </div>}
                 <div className="card-body d-flex flex-column">
@@ -78,14 +78,14 @@ const PokemonDetails = (props) => {
                     </div>
                     <div className="text-right align-self-end">
                         {
-                            !isInCart(pokemon) &&
+                            !isInBag(pokemon) &&
                             <button
                                 onClick={() => addPokemon(pokemon)}
                                 className="btn btn-outline-primary btn-sm mr-1">Add</button>
                         }
 
                         {
-                            isInCart(pokemon) &&
+                            isInBag(pokemon) &&
                             <button
                                 onClick={() => removePokemon(pokemon)}
                                 className="btn btn-primary btn-sm mr-1">Remove</button>

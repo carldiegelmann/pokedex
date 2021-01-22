@@ -2,13 +2,13 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {TrashIcon} from '../../components/icons'
-import {CartContext} from '../../context/CartContext';
+import {BagContext} from '../../context/BagContext';
 import {capitalize} from '../../helper'
 import customConfirmAlert from '../../components/CustomConfirmAlert'
 
 const CartItem = ({pokemon}) => {
 
-    const {removePokemon} = useContext(CartContext);
+    const {removePokemon} = useContext(BagContext);
 
     return (
         <div className="row no-gutters py-2 d-flex align-items-center">

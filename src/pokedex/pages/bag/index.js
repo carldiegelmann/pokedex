@@ -1,16 +1,16 @@
 import React, {useContext} from 'react';
 import Layout from '../../components/Layout';
 
-import CartProducts from './CartProducts';
-import {CartContext} from '../../context/CartContext';
+import BagPokemons from './BagPokemons';
+import {BagContext} from '../../context/BagContext';
 
 
-const Cart = () => {
+const Bag = () => {
 
-    const {cartItems, itemCount, clearCart, checkout, handleCheckout} = useContext(CartContext);
+    const {bagItems, itemCount, clearBag} = useContext(BagContext);
 
     return (
-        <Layout title="Cart" description="This is the Cart page" >
+        <Layout title="Bag" description="This is the Bag page" >
             <div >
                 <div className="text-center mt-5">
                     <h1>My Pokemon</h1>
@@ -20,22 +20,22 @@ const Cart = () => {
                 <div className="row no-gutters justify-content-center">
                     <div className="col-sm-9 p-3">
                         {
-                            cartItems.length > 0 ?
-                                <CartProducts /> :
+                            bagItems.length > 0 ?
+                                <BagPokemons /> :
                                 <div className="p-3 text-center text-muted">
                                     Your backpack is empty
                             </div>
                         }
                     </div>
                     {
-                        cartItems.length > 0 &&
+                        bagItems.length > 0 &&
                         <div className="col-sm-3 p-3">
                             <div className="card card-body">
                                 <p className="mb-1">Total Pokemon(s)</p>
                                 <h4 className=" mb-3 txt-right">{itemCount}</h4>
                                 <hr className="my-4" />
                                 <div className="text-center">
-                                    <button type="button" className="btn btn-danger btn-sm" onClick={clearCart}>CLEAR ALL</button>
+                                    <button type="button" className="btn btn-danger btn-sm" onClick={clearBag}>CLEAR ALL</button>
                                 </div>
 
                             </div>
@@ -48,4 +48,4 @@ const Cart = () => {
     );
 }
 
-export default Cart;
+export default Bag;

@@ -1,19 +1,19 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import {CartContext} from '../../context/CartContext';
+import {BagContext} from '../../context/BagContext';
 import {capitalize} from '../../helper';
 
 const PokemonListItem = ({pokemon}) => {
 
-    const {addPokemon, cartItems, removePokemon} = useContext(CartContext);
+    const {addPokemon, bagItems, removePokemon} = useContext(BagContext);
 
-    const isInCart = pokemon => {
-        return !!cartItems.find(item => item.name === pokemon.name);
+    const isInBag = pokemon => {
+        return !!bagItems.find(item => item.name === pokemon.name);
     }
 
     return pokemon ? (
         <div className="card">
-            {isInCart(pokemon) && <div className="card-header">
+            {isInBag(pokemon) && <div className="card-header">
                 <div className="text-center">I own it!</div>
             </div>}
             <div className="card-body d-flex flex-column">
@@ -34,14 +34,14 @@ const PokemonListItem = ({pokemon}) => {
                     }} className="btn btn-link btn-sm mr-2" >Details</Link>
 
                     {
-                        !isInCart(pokemon) &&
+                        !isInBag(pokemon) &&
                         <button
                             onClick={() => addPokemon(pokemon)}
                             className="btn btn-outline-primary btn-sm">Add</button>
                     }
 
                     {
-                        isInCart(pokemon) &&
+                        isInBag(pokemon) &&
                         <button
                             onClick={() => removePokemon(pokemon)}
                             className="btn btn-primary btn-sm">Remove</button>

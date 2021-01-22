@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HelmetProvider} from 'react-helmet-async';
-import CartContextProvider from './pokedex/context/CartContext'
+import BagContextProvider from './pokedex/context/BagContext'
 import Routes from './pokedex/Router';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -12,9 +12,9 @@ ReactDOM.render(
 
   <HelmetProvider>
     <Provider store={store}>
-      <CartContextProvider>
+      <BagContextProvider>
         <Routes />
-      </CartContextProvider>
+      </BagContextProvider>
     </Provider>
   </HelmetProvider>,
 
