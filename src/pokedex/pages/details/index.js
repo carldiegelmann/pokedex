@@ -40,9 +40,21 @@ const PokemonDetails = (props) => {
 
                     <div className="mb-5">
                         <h5>Types</h5>
-                        <div>
-                            {pokemon.types.map((type, index) =>
-                                <div key={index}><span className="badge badge-pill badge-success">{type}</span></div>
+                        <div className={styles.moves__grid}>
+                            {pokemon.types.map((type, index) => {
+                                if (type == "grass") {
+                                    return <div key={index}><span className="badge badge-pill badge-success">{type}</span></div>
+                                }
+                                if (type == "electric" || type == "bug") {
+                                    return <div key={index}><span className="badge badge-pill badge-warning">{type}</span></div>
+                                }
+                                if (type == "fire") {
+                                    return <div key={index}><span className="badge badge-pill badge-danger">{type}</span></div>
+                                } if (type == "water" || type == "flying") {
+                                    return <div key={index}><span className="badge badge-pill badge-info">{type}</span></div>
+                                }
+                                return <div key={index}><span className="badge badge-pill badge-secondary">{type}</span></div>
+                            }
                             )}
                         </div>
                     </div>

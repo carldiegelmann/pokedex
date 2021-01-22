@@ -11,11 +11,9 @@ const CartProducts = () => {
     return (
         <div className={styles.p__container}>
             <div className="card card-body border-0">
-
                 {
                     cartItems.map(pokemon => <CartItem key={pokemon.id} pokemon={pokemon} />)
                 }
-
             </div>
         </div>
 

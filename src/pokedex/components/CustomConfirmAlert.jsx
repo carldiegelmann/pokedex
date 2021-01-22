@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {confirmAlert} from "react-confirm-alert";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -8,8 +8,8 @@ const CustomConfirmAlert = (removePokemon) => confirmAlert({
       <div className='custom-ui'>
         <h1>Are you sure?</h1>
         <p>You want to delete this pokemon from your My Pokemon list?</p>
-        <button onClick={onClose}>No</button>
-        <button
+        <button className="btn btn-primary btn-sm mr-1" onClick={onClose}>No</button>
+        <button className="btn btn-danger btn-sm"
           onClick={() => {
             removePokemon();
             onClose();

@@ -35,7 +35,7 @@ const Cart = () => {
                                 <h4 className=" mb-3 txt-right">{itemCount}</h4>
                                 <hr className="my-4" />
                                 <div className="text-center">
-                                    <button type="button" className="btn btn-primary btn-sm" onClick={clearCart}>CLEAR</button>
+                                    <button type="button" className="btn btn-danger btn-sm" onClick={clearCart}>CLEAR ALL</button>
                                 </div>
 
                             </div>

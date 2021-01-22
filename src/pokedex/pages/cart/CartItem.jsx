@@ -15,7 +15,6 @@ const CartItem = ({pokemon}) => {
             <div className="col-sm-2 p-2">
                 <img
                     alt={pokemon.name}
-                    // style={{margin: "0 auto", maxHeight: "50px"}}
                     src={pokemon.image} className="img-fluid d-block" />
             </div>
             <div className="col-sm-2 p-2">

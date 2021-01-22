@@ -34,7 +34,6 @@ export const fetchPokemon = (cursor) => {
                         } else {
                             image = response[index].imageUrl;
                         }
-                        console.log(response[index]);
                         return ({...currElement, image, types: response[index].types, stats: response[index].stats, moves: response[index].moves, desc: response[index].desc})
                     });
                 }).then(items => {
