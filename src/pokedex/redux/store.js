@@ -1,12 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {pokemonReducer} from "./pokedex/reducer";
+import {pokemonListReducer} from "./pokedex/reducer";
 import {pokemonMiddleware} from "./pokedex/middleware";
 import thunk from 'redux-thunk';
 
 const middlewares = [pokemonMiddleware, thunk];
 
 const rootReducer = combineReducers({
-    pokedex: pokemonReducer,
+    pokedex: pokemonListReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));

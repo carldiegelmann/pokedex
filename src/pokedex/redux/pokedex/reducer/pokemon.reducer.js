@@ -1,4 +1,5 @@
-import {MAX_ITEMS} from '../../../helper';
+import {FETCH_POKEMON_BEGIN, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE, SEARCH_POKEMON_SUCCESS, SEARCH_POKEMON_FAILURE} from '../../actionTypes';
+
 
 const initialState = {
     allItems: [],
@@ -8,45 +9,36 @@ const initialState = {
     error: ''
 };
 
-const pokemonReducer = (state = initialState, action) => {
+const pokemonListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH_POKEMON_BEGIN":
+        case FETCH_POKEMON_BEGIN:
             return {
                 ...state,
                 loading: true
             }
-        case "FETCH_POKEMON_SUCCESS":
+        case FETCH_POKEMON_SUCCESS:
             return {
                 ...state,
                 pokemonItems: state.pokemonItems.concat(action.payload),
                 loading: false
             }
-        case "FETCH_POKEMON_FAILURE":
+        case FETCH_POKEMON_FAILURE:
             return {
                 ...state,
                 error: action.payload,
                 loading: false
             }
-        case "SEARCH_POKEMON_SUCCESS":
+        case SEARCH_POKEMON_SUCCESS:
             return {
                 ...state,
                 searchList: action.payload,
                 loading: false
             }
-        case "SEARCH_POKEMON_FAILURE":
+        case SEARCH_POKEMON_FAILURE:
             return {
                 ...state,
-                loading: false
-            }
-        case "SEARCH_POKEMONS":
-            return {
-                ...state,
-                searchList: action.payload
-            }
-        case "CLEAR":
-            return {
-                pokemonItems: [],
-                localStoredPokemonItems: []
+                loading: false,
+                error: action.payload,
             }
         default:
             return state
@@ -54,4 +46,4 @@ const pokemonReducer = (state = initialState, action) => {
     }
 }
 
-export {pokemonReducer};
+export {pokemonListReducer};

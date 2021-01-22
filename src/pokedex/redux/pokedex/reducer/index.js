@@ -1,1 +1,1 @@
-export {pokemonReducer} from "./pokemon.reducer";
+export {pokemonListReducer} from "./pokemon.reducer";

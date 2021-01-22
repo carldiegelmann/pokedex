@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useContext} from 'react';
-import {withRouter, useParams} from 'react-router-dom';
+import React, {useEffect, useContext} from 'react';
+import {withRouter} from 'react-router-dom';
 import ChartComponent from './ChartComponent';
 import {BagContext} from '../../context/BagContext';
 import {capitalize} from '../../helper';

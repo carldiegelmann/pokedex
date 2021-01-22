@@ -9,11 +9,8 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-
-            {/* <Link to='/'>Store</Link> */}
             <Link to='/'> <HomeIcon />Home</Link>
             <Link to='/bag'> <BackPackIcon />My Pokemon ({itemCount})</Link>
-            {/* <Link to='/about'>About</Link> */}
         </header>
     );
 }

@@ -1,4 +1,5 @@
 import {getPokemonsWithFetch, fetchAdditionalData} from './api';
+import {FETCH_POKEMON_BEGIN, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE, SEARCH_POKEMON_SUCCESS} from './actionTypes';
 import {FETCH_SIZE} from '../../pokedex/config';
 
 
@@ -75,43 +76,36 @@ export const searchPokemonList = (searchTerm) => {
     }
 }
 
-export function fetchPokemonInitialSuccess(allItems) {
-    return {
-        type: 'FETCH_INITIAL_POKEMON_SUCCESS',
-        payload: allItems
-    };
-}
-
 export function fetchPokemonPending() {
     return {
-        type: 'FETCH_POKEMON_BEGIN'
+        type: FETCH_POKEMON_BEGIN
     };
 }
 
 export function fetchPokemonSuccess(pokemon) {
     return {
-        type: 'FETCH_POKEMON_SUCCESS',
+        type: FETCH_POKEMON_SUCCESS,
         payload: pokemon
     };
 }
 
 export function fetchPokemonError(error) {
     return {
-        type: 'FETCH_POKEMON_FAILURE',
+        type: FETCH_POKEMON_FAILURE,
         payload: error
     };
 }
 
 export function searchPokemonSuccess(items) {
     return {
-        type: 'SEARCH_POKEMON_SUCCESS',
+        type: SEARCH_POKEMON_SUCCESS,
         payload: items
     };
 }
 
 export function searchPokemonError(error) {
     return {
-        type: 'SEARCH_POKEMON_FAILURE',
+        type: SEARCH_POKEMON_FAILURE,
         payload: error
     };
 }
