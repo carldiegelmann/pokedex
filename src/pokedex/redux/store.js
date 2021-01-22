@@ -12,6 +12,5 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
 store.subscribe(() => {
     store.getState()
-    // console.log(store.getState());
 });
 export {store};

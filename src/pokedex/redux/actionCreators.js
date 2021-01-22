@@ -1,5 +1,5 @@
 import {getPokemonsWithFetch, fetchAdditionalData} from './api';
-import {FETCH_POKEMON_BEGIN, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE, SEARCH_POKEMON_SUCCESS} from './actionTypes';
+import {FETCH_POKEMON_BEGIN, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE, SEARCH_POKEMON_SUCCESS, SEARCH_POKEMON_FAILURE} from './actionTypes';
 import {FETCH_SIZE} from '../../pokedex/config';
 
 
