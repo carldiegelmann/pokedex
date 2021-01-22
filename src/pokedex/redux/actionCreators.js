@@ -1,6 +1,6 @@
 import {getPokemonsWithFetch, fetchAdditionalData} from './api';
+import {FETCH_SIZE} from '../../pokedex/config';
 
-const fetchSize = 18;
 
 const Storage = (items) => {
     localStorage.setItem('allPokemons', JSON.stringify(items.length > 0 ? items : []));
@@ -25,7 +25,7 @@ export const fetchPokemon = (cursor) => {
         dispatch(fetchPokemonPending());
         fetchInitial()
             .then(items => {
-                const subset = items.slice(cursor, cursor + fetchSize)
+                const subset = items.slice(cursor, cursor + FETCH_SIZE)
                 Promise.all(subset.map((obj) => fetchAdditionalData(obj.url, obj.id))).then((response) => {
                     return subset.map((currElement, index) => {
                         let image = response[index];

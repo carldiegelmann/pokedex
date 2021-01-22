@@ -1,20 +1,10 @@
 import {BarSeries, Tooltip, ChartProvider, XAxis, YAxis, Rectangle} from 'rough-charts';
 import * as d3Scale from 'd3-scale'
-import {colors} from './../../helper'
+import {colors} from './../../config'
 
 const ChartComponent = ({stats}) => {
 
     const data = stats.map((item, index) => ({name: item.stat.name, value: item.base_stat}));
-
-    // const data =
-    //     [
-    //         {
-    //             amt: 2400,
-    //             name: 'Page A',
-    //             pv: 2400,
-    //             uv: 4000
-    //         }
-    //     ];
 
     const yScale = d3Scale
         .scaleLinear()

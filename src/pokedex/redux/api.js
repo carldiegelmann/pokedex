@@ -1,5 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
-import {MAX_ITEMS} from '../helper';
+import {MAX_ITEMS} from '../config';
 
 const BASE_API = 'https://pokeapi.co/api/';
 

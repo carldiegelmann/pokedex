@@ -14,18 +14,13 @@ const PokemonSearchableList = ({pokemonItems, searchList, loading, fetchPokemon,
     };
 
     useEffect(() => {
+        fetchPokemon(pokemonItems.length);
+    }, []);
+
+    useEffect(() => {
         const searchTerm = bouncedSearchString.toString().toLowerCase();
         searchPokemonList(searchTerm);
     }, [searchPokemonList, bouncedSearchString]);
-
-    // useMemo(async () => {
-    //     const searchTerm = bouncedSearchString.toString().toLowerCase();
-    //     searchPokemonList(searchTerm);
-    // }, [pokemonItems, bouncedSearchString])
-
-    useEffect(() => {
-        fetchPokemon(pokemonItems.length);
-    }, []);
 
     function renderButton() {
         return loading || pokeItems.length === 0 ? (<div className="spinner-border text-dark" role="status">
