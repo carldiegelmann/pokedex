@@ -1,9 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {Transition} from 'react-transition-group';
 import {BagContext} from '../../context/BagContext';
 import {capitalize} from '../../helper';
-import styles from './PokemonListItem.module.scss';
 
 const PokemonListItem = ({pokemon}) => {
 
