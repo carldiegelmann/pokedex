@@ -3,6 +3,6 @@ export const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-export const colors = ["#fe4a49", "#8ECB9B", "#fe4a49", "#fe4a49", "#fe4a49", "#fe4a49"];
+export const colors = ["#A3E4D7", "#DAF7A6", "#FFC300", "#FF5733", "#C70039", "#900C3F"];
 
 export const MAX_ITEMS = 900;

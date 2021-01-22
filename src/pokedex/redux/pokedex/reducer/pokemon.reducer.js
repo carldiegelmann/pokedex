@@ -5,8 +5,7 @@ const initialState = {
     pokemonItems: [],
     searchList: [],
     loading: false,
-    error: '',
-    more: true
+    error: ''
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -20,7 +19,6 @@ const pokemonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemonItems: state.pokemonItems.concat(action.payload),
-                more: state.pokemonItems.length < MAX_ITEMS,
                 loading: false
             }
         case "FETCH_POKEMON_FAILURE":

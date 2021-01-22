@@ -30,9 +30,9 @@ const PokemonSearchableList = ({pokemonItems, searchList, loading, fetchPokemon,
     function renderButton() {
         return loading || pokeItems.length === 0 ? (<div className="spinner-border text-dark" role="status">
             <span className="sr-only">Loading...</span>
-        </div>) : <button
+        </div>) : (!(searchList.length > 0) ? <button
             onClick={() => fetchPokemon(pokeItems.length)}
-            className="btn btn-outline-primary btn-sm">Load more...</button>;
+            className="btn btn-outline-primary btn-sm">Load more...</button> : null);
     }
 
     const pokeItems = searchList.length > 0 ? searchList : pokemonItems;
@@ -77,7 +77,6 @@ const mapState = (state) => {
     return {
         pokemonItems: state.pokedex.pokemonItems,
         searchList: state.pokedex.searchList,
-        more: state.pokedex.more,
         loading: state.pokedex.loading
     };
 }

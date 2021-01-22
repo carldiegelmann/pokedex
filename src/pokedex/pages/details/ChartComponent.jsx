@@ -52,7 +52,7 @@ const ChartComponent = ({stats}) => {
                             key={index}
                             options={{
                                 fillStyle: 'solid',
-                                fill: colors[0],
+                                fill: colors[index],
                             }}
                         />
                     )}

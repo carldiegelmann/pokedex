@@ -32,11 +32,11 @@ const PokemonDetails = (props) => {
                 {isInCart(pokemon) && <div className="card-header">
                     <div className="text-center">I own it!</div>
                 </div>}
-                <img className="card-img-top" src={pokemon.image} className="rounded mx-auto d-block" alt="no image" />
                 <div className="card-body d-flex flex-column">
-
-                    <h3 className="card-title text-center"># {pokemon.id} {capitalize(pokemon.name)}</h3>
-                    <h6 className="card-subtitle mb-2 text-muted text-center">{pokemon.desc}</h6>
+                    <img className="card-img-top" src={pokemon.image} className="rounded mx-auto d-block" alt="no image" />
+                    <h3 className="card-title text-center"># {pokemon.id}</h3>
+                    <h3 className="card-title text-center">{capitalize(pokemon.name)}</h3>
+                    <h6 className="card-subtitle mb-5 text-muted text-center">{pokemon.desc}</h6>
 
                     <div className="mb-5">
                         <h5>Types</h5>
@@ -69,18 +69,20 @@ const PokemonDetails = (props) => {
                             !isInCart(pokemon) &&
                             <button
                                 onClick={() => addPokemon(pokemon)}
-                                className="btn btn-outline-primary btn-sm">Add</button>
+                                className="btn btn-outline-primary btn-sm mr-1">Add</button>
                         }
 
                         {
                             isInCart(pokemon) &&
                             <button
                                 onClick={() => removePokemon(pokemon)}
-                                className="btn btn-primary btn-sm">Remove</button>
+                                className="btn btn-primary btn-sm mr-1">Remove</button>
                         }
+
                         <button
                             onClick={() => handleBackClick()}
                             className="btn btn-outline-primary btn-sm">Back to list</button>
+
                     </div>
                 </div>
             </div>

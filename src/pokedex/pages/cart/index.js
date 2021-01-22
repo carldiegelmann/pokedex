@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 
 import CartProducts from './CartProducts';
 import {CartContext} from '../../context/CartContext';
-import {Link} from 'react-router-dom';
+
 
 const Cart = () => {
 
@@ -23,14 +23,7 @@ const Cart = () => {
                             cartItems.length > 0 ?
                                 <CartProducts /> :
                                 <div className="p-3 text-center text-muted">
-                                    Your cart is empty
-                            </div>
-                        }
-
-                        {checkout &&
-                            <div className="p-3 text-center text-success">
-                                <p>Checkout successfull</p>
-                                <Link to="/" className="btn btn-outline-success btn-sm">BUY MORE</Link>
+                                    Your backpack is empty
                             </div>
                         }
                     </div>
@@ -38,12 +31,11 @@ const Cart = () => {
                         cartItems.length > 0 &&
                         <div className="col-sm-3 p-3">
                             <div className="card card-body">
-                                <p className="mb-1">Total Items</p>
+                                <p className="mb-1">Total Pokemon(s)</p>
                                 <h4 className=" mb-3 txt-right">{itemCount}</h4>
                                 <hr className="my-4" />
                                 <div className="text-center">
                                     <button type="button" className="btn btn-primary btn-sm" onClick={clearCart}>CLEAR</button>
-                                    {/* <button type="button" className="btn btn-outlineprimary btn-sm" onClick={clearCart}>CLEAR</button> */}
                                 </div>
 
                             </div>
