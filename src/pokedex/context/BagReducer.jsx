@@ -4,10 +4,8 @@ const Storage = (bagItems) => {
 
 export const sumItems = bagItems => {
     Storage(bagItems);
-    let itemCount = bagItems.reduce((total, product) => total + product.quantity, 0);
-    const reducer = (total, product) => total + product.price * product.quantity
-    let total = bagItems.reduce(reducer, 0).toFixed(2);
-    return {itemCount, total}
+    let itemCount = bagItems.reduce((total, pokemon) => total + pokemon.quantity, 0);
+    return {itemCount}
 }
 
 export const BagReducer = (state, action) => {

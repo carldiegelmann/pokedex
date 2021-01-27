@@ -17,10 +17,10 @@ const CartItem = ({pokemon}) => {
                     alt={pokemon.name}
                     src={pokemon.image} className="img-fluid d-block" />
             </div>
-            <div className="col-sm-2 p-2">
+            <div className="col-sm-3 p-2">
                 <h5 className="mb-1">#{pokemon.id} - {capitalize(pokemon.name)}</h5>
             </div>
-            <div className="col-sm-2 p-2">
+            <div className="col-sm-1 p-2">
                 <Link to={{
                     pathname: "/details/" + pokemon.id,
                     pokemon
