@@ -47,7 +47,7 @@ const PokemonListItem = ({pokemon}) => {
 
 
             <div className="card-body d-flex flex-column">
-                <img src={pokemon.image} className="rounded mx-auto d-block" alt="" />
+                <img src={pokemon.image} className="rounded mx-auto d-block" alt={pokemon.name} />
                 <div className="card-body">
                     <h4 className="text-center"> # {pokemon.id} {capitalize(pokemon.name)}</h4>
                 </div>

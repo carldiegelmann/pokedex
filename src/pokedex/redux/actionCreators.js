@@ -2,16 +2,22 @@ import {getPokemonsWithFetch, fetchAdditionalData} from './api';
 import {FETCH_POKEMON_BEGIN, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE, SEARCH_POKEMON_SUCCESS, SEARCH_POKEMON_FAILURE} from './actionTypes';
 import {FETCH_SIZE} from '../../pokedex/config';
 
+const ONE_HOUR = 60 * 60 * 1000; /* ms */
 
-const Storage = (items) => {
-    localStorage.setItem('allPokemons', JSON.stringify(items.length > 0 ? items : []));
+const Storage = (data) => {
+    localStorage.setItem('allPokemons', JSON.stringify(data.length > 0 ? {timestamp: new Date().getTime().toString(), items: data} : []));
 }
 
 export const fetchInitial = () => {
     return new Promise((resolve, reject) => {
+        // add timestamp
         const storage = localStorage.getItem('allPokemons') ? JSON.parse(localStorage.getItem('allPokemons')) : [];
-        if (storage && storage.length > 0) {
-            resolve(storage);
+        if (new Date(storage.timestamp).getTime() + ONE_HOUR < new Date().getTime()) {
+            localStorage.removeItem('allPokemons');
+        }
+
+        if (storage.data && storage.data.length > 0) {
+            resolve(storage.data);
         } else {
             getPokemonsWithFetch().then(items => {
                 Storage(items);
